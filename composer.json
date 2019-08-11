@@ -1,6 +1,6 @@
 {
     "name": "mvaload/page-analyzer",
-    "description": "The Laravel Lumen Framework.",
+    "description": "SEO page analyzer.",
     "keywords": ["framework", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
