@@ -1,5 +1,3 @@
 # Page-analyzer  
 
-[![Test Coverage](https://api.codeclimate.com/v1/badges/f41d1e1d693b596135e1/test_coverage)](https://codeclimate.com/github/mvaload/php-project-lvl3/test_coverage)    
-
-[![Build Status](https://travis-ci.org/mvaload/page-analyzer.svg?branch=master)](https://travis-ci.org/mvaload/page-analyzer)
+[![Maintainability](https://api.codeclimate.com/v1/badges/bd4e3f3bac7c6ef53f7e/maintainability)](https://codeclimate.com/github/mvaload/page-analyzer/maintainability) [![Build Status](https://travis-ci.org/mvaload/page-analyzer.svg?branch=master)](https://travis-ci.org/mvaload/page-analyzer)
