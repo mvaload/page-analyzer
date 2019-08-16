@@ -1,7 +1,7 @@
 {
     "name": "mvaload/page-analyzer",
     "description": "SEO page analyzer.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "keywords": ["SEO", "laravel", "lumen"],
     "license": "MIT",
     "type": "project",
     "require": {
