@@ -1,5 +1,7 @@
 <?php
 
+use Barryvdh\Debugbar\Facade as Debugbar;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,5 +14,6 @@
 */
 
 $router->get('/', function () use ($router) {
+    Debugbar::error('Error!');
     return view('index');
 });
