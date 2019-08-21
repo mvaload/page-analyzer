@@ -4,3 +4,5 @@ Homestead.json
 Homestead.yaml
 .env
 .env.example
+/config/database.php
+/database/database.sqlite
