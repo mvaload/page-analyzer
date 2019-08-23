@@ -12,8 +12,7 @@ use Barryvdh\Debugbar\Facade as Debugbar;
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-$router->get('/', function () use ($router) {
-    Debugbar::error('Error!');
-    return view('index');
-});
+$router->get('/', ['as' => 'index.show', 'uses' => 'IndexController@show']);
+$router->post('/domains', ['as' => 'domains.store', 'uses' => 'DomainsController@store']);
+$router->get('/domains', ['as' => 'domains.index', 'uses' => 'DomainsController@index']);
+$router->get('/domains/{id}', ['as' => 'domains.show', 'uses' => 'DomainsController@show']);
