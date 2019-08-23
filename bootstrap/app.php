@@ -21,17 +21,17 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-$app->withFacades(true, ['Barryvdh\Debugbar\Facade' => 'Debugbar']);
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 
 // enable laravel debug-panel
 if (env('APP_DEBUG')) {
+    $app->configure('app');
+    $app->configure('debugbar');
     $app->register(Barryvdh\Debugbar\LumenServiceProvider::class);
 }
-
-$app->configure('debugbar');
 
 /*
 |--------------------------------------------------------------------------
