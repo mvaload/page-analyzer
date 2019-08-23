@@ -6,4 +6,3 @@ Homestead.yaml
 .env.example
 /config/database.php
 /database/database.sqlite
-.env.travis
