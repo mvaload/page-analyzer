@@ -7,6 +7,7 @@ install:
     - make install
 
 script:
+    - php artisan migrate --env=testing --no-interaction -vvv
     - make lint test
 
 services:
@@ -14,5 +15,5 @@ services:
 
 before_script:
     - cp .env.travis .env
-    - mysql -e 'create database homestead_test;'
-    - php artisan migrate --no-interaction
+    - psql -c 'create database homestead_test;'
+    - php artisan migrate:install --env=testing --no-interaction -vvv
