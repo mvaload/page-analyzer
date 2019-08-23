@@ -16,8 +16,8 @@
             <tr>
             <th scope="row">{{ $url[0]->id }}</th>
             <td>{{ $url[0]->name }}</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <td>{{ $url[0]->created_at }}</td>
+            <td>{{ $url[0]->updated_at }}</td>
             </tr>
         </tbody>
     </table>
