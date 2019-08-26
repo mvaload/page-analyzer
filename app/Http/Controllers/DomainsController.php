@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use Carbon\Carbon;
 use App\Jobs\ParseJob;
+use DiDom\Document;
 
 class DomainsController extends Controller
 {
@@ -37,18 +38,23 @@ class DomainsController extends Controller
         $contentLengthHeader = $response->getHeader('Content-Length');
         $contentLength = isset($contentLengthHeader[0]) ? $contentLengthHeader[0] : 0;
         $responseCode = $response->getStatusCode();
+
         $id = DB::table('domains')->insertGetId(['name' => $url,
                                                  'created_at' => Carbon::now()->toDateTimeString(),
                                                  'contentLength' => $contentLength,
                                                  'responseCode' => $responseCode,
-                                                 'body' => '']);
+                                                 'body' => '',
+                                                 'h1' => '',
+                                                 'keywords' => '',
+                                                 'description' => ''
+                                                 ]);
         dispatch(new ParseJob($url));
         return redirect()->route('domain.show', ['id' => $id]);
     }
     
     public function show($id)
     {
-        $url = DB::select('select * from domains where id = ?', [$id]);
+        $url = DB::table('domains')->where('id', $id)->first();
         return view('domains', ['url' => $url]);
     }
 
@@ -60,7 +66,7 @@ class DomainsController extends Controller
 
     public function hasURL($urlName)
     {
-        $url = DB::select('select * from domains where name = ?', [$urlName]);
+        $url = DB::table('domains')->where('name', $urlName)->first();
         return !empty($url);
     }
 }
