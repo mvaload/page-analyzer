@@ -19,6 +19,9 @@ class CreateDomainsTable extends Migration
             $table->bigInteger('contentLength');
             $table->integer('responseCode');
             $table->text('body');
+            $table->text('h1');
+            $table->text('keywords');
+            $table->text('description');
             $table->timestamps();
         });
     }
