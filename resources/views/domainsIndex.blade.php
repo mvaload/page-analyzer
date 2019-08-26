@@ -16,7 +16,7 @@
             @foreach ($urls as $url)
                 <tr>
                 <th scope="row">{{ $url->id }}</th>
-                <td><a href="{{ $url->name }}">{{ $url->name }}</a></td>
+                <td><a href="{{ route('domains.show', ['id' => $url->id]) }}">{{ $url->name }}</a></td>
                 <td>{{ $url->responseCode }}</td>
                 <td>{{ $url->contentLength }}</td>
                 </tr>
@@ -24,4 +24,4 @@
         </tbody>
     </table>
     {{ $urls->links() }}
-@endsection 
+@endsection
