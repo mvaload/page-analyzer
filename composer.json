@@ -1,5 +1,11 @@
 {
     "name": "mvaload/page-analyzer",
+    "authors": [
+        {
+            "name": "mvaload",
+            "email": "mvaload@gmail.com"
+        }
+    ],
     "description": "SEO page analyzer.",
     "keywords": ["SEO", "laravel", "lumen"],
     "license": "MIT",
@@ -8,7 +14,8 @@
         "php": ">=7.1.3",
         "guzzlehttp/guzzle": "^6.3",
         "imangazaliev/didom": "^1.14",
-        "laravel/lumen-framework": "5.8.*"
+        "laravel/lumen-framework": "5.8.*",
+        "vlucas/phpdotenv": "^3.4"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -36,7 +43,6 @@
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "phpcs": "phpcs",
-        "phpcbf": "phpcbf",
         "phpunit": "phpunit",
         "test": "phpunit tests"
     },
