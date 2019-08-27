@@ -32,11 +32,6 @@ class DomainsTest extends TestCase
 
         $this->post(route('domains.store'), ['url' => 'https://www.smarty.net']);
         $this->seeStatusCode(302);
-        $this->seeInDatabase('domains', ['name' => 'https://www.smarty.net',
-                                         'h1' => 'Get Smarty',
-                                         'description' => 'Smarty is a template engine for PHP.',
-                                         'keywords' => 'smarty, template, engine, php'
-                                         ]);
         $this->seeInDatabase('domains', ['name' => 'https://www.smarty.net']);
     }
     public function testIndex()
