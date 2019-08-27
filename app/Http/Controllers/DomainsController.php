@@ -49,7 +49,7 @@ class DomainsController extends Controller
                                                  'description' => ''
                                                  ]);
         dispatch(new ParseJob($url));
-        return redirect()->route('domain.show', ['id' => $id]);
+        return redirect()->route('domains.show', ['id' => $id]);
     }
     
     public function show($id)
