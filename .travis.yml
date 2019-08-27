@@ -1,19 +1,15 @@
 language: php
 php:
-  - '7.3'
-
-install:
-    - composer self-update
-    - make install
-
-script:
-    - php artisan migrate --env=testing --no-interaction -vvv
-    - make lint test
-
+    - '7.3'
 services:
     - postgresql
-
 before_script:
     - cp .env.travis .env
     - psql -c 'create database homestead_test;'
     - php artisan migrate:install --env=testing --no-interaction -vvv
+install:
+    - composer self-update
+    - make install
+script:
+    - php artisan migrate --env=testing --no-interaction -vvv
+    - make lint test
