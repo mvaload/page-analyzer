@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Jumbotron -->
-    <form action="/domains" method="POST">
+    <form action="{{route('domains.store')}}" method="POST">
         <div class="jumbotron">
             <h1 class="display-4">SEO tool</h1>
             <p class="lead">Enter URL to start</p>
