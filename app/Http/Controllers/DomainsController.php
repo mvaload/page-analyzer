@@ -9,14 +9,15 @@ use GuzzleHttp\Client;
 use Carbon\Carbon;
 use App\Jobs\ParseJob;
 use DiDom\Document;
+use App\Domain;
 
 class DomainsController extends Controller
 {
     private $client;
     
-    public function __construct()
+    public function __construct(Client $client)
     {
-        $this->client = new Client();
+        $this->client = $client;
     }
     
     public function store(Request $request)
@@ -54,13 +55,13 @@ class DomainsController extends Controller
     
     public function show($id)
     {
-        $url = DB::table('domains')->where('id', $id)->first();
+        $url = Domain::findOrFail($id);
         return view('domains', ['url' => $url]);
     }
 
-    public function index(Request $request, $page = 1)
+    public function index()
     {
-        $urls = DB::table('domains')->paginate(4);
+        $urls = Domain::paginate(10);
         return view('domainsIndex', ['urls' => $urls]);
     }
 
