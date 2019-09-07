@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use App\Http\Controllers\DomainsController;
