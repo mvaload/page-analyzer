@@ -6,8 +6,8 @@ use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
-use Carbon\Carbon;
-use App\Jobs\ParseJob;
+use Illuminate\Bus\Dispatcher;
+use App\Jobs\DomainJob;
 use DiDom\Document;
 use App\Domain;
 
@@ -35,22 +35,10 @@ class DomainsController extends Controller
             return redirect()->route('index.show', ['urlErrorMessage' => $urlErrorMessage]);
         }
 
-        $response = $this->client->request('GET', $url);
-        $contentLengthHeader = $response->getHeader('Content-Length');
-        $contentLength = isset($contentLengthHeader[0]) ? $contentLengthHeader[0] : 0;
-        $responseCode = $response->getStatusCode();
+        $domain = Domain::create(['name' => $url]);
 
-        $id = DB::table('domains')->insertGetId(['name' => $url,
-                                                 'created_at' => Carbon::now()->toDateTimeString(),
-                                                 'contentLength' => $contentLength,
-                                                 'responseCode' => $responseCode,
-                                                 'body' => '',
-                                                 'h1' => '',
-                                                 'keywords' => '',
-                                                 'description' => ''
-                                                 ]);
-        dispatch(new ParseJob($url));
-        return redirect()->route('domains.show', ['id' => $id]);
+        dispatch(new DomainJob($domain));
+        return redirect()->route('domains.show', ['id' => $domain->id]);
     }
     
     public function show($id)
@@ -67,7 +55,7 @@ class DomainsController extends Controller
 
     public function hasURL($urlName)
     {
-        $url = DB::table('domains')->where('name', $urlName)->first();
-        return !empty($url);
+        $domain = Domain::where('name', $urlName)->first();
+        return !empty($domain);
     }
 }
