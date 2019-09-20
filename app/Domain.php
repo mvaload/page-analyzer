@@ -8,11 +8,11 @@ class Domain extends Model
 {
     protected $fillable = [
         'name',
-        'contentLength', 
-        'responseCode', 
+        'contentLength',
+        'responseCode',
         'body', 
-        'h1', 
-        'keywords', 
+        'h1',
+        'keywords',
         'description'
     ];
 }
