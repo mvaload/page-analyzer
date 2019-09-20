@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
@@ -27,9 +28,8 @@ class DomainsTest extends TestCase
 
     public function testStore()
     {
-        $domain = factory('App\Domain')->make();
-        $this->post(route('domains.store'), ['domain' => $domain->name]);
-        $this->assertResponseStatus(302);
+        $this->post(route('domains.store'), ['url' => 'http://google.com']);
+        $this->seeStatusCode(302);
         $this->seeInDatabase('domains', ['name' => 'http://google.com']);
     }
 
