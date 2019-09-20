@@ -28,9 +28,9 @@ class DomainsTest extends TestCase
 
     public function testStore()
     {
-        $this->post(route('domains.store'), ['url' => 'http://google.com']);
-        $this->seeStatusCode(302);
-        $this->seeInDatabase('domains', ['name' => 'http://google.com']);
+        $this->post(route('domains.store'), ['url' => 'http://example.com']);
+        $this->assertResponseStatus(302);
+        $this->seeInDatabase('domains', ['name' => 'http://example.com']);
     }
 
     public function testIndex()
