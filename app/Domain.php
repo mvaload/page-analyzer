@@ -10,7 +10,7 @@ class Domain extends Model
         'name',
         'contentLength',
         'responseCode',
-        'body', 
+        'body',
         'h1',
         'keywords',
         'description'
