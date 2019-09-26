@@ -18,10 +18,10 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="{{ route('index.show') }}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('index.show') }}">@lang('messages.home') <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('domains.index') }}">Domains</a>
+                        <a class="nav-link" href="{{ route('domains.index') }}">@lang('messages.list')</a>
                     </li>
                 </ul>
             </div>

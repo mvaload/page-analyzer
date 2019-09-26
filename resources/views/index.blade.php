@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
-
 @section('content')
     <!-- Jumbotron -->
     <form action="{{route('domains.store')}}" method="POST">
         <div class="jumbotron">
-            <h1 class="display-4">SEO tool</h1>
-            <p class="lead">Enter URL to start</p>
-            <p>{{ $urlErrorMessage }}</p>
-            <hr class="my-4">
+            <h1 class="display-4">@lang('messages.title')</h1>
+            <p class="lead">@lang('messages.text')</p>
+            @isset($errors)
+                @foreach($errors as $error)
+                    <div class="alert alert-danger" role="alert">{{ $error }}</div>
+                @endforeach
+            @endisset
             <div class="form-group">
                 <input type="text" name="url" class="form-control" id="testControl" placeholder="Enter webpage URL">
             </div>
