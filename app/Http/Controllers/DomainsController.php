@@ -22,19 +22,22 @@ class DomainsController extends Controller
     
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), ['url' => 'required|URL']);
+
+        $messages = [
+            'url.required' => trans('messages.required'),
+            'url.unique' => trans('messages.unique')
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'url' => 'required|unique:domains,name'
+        ], $messages);
+
         if ($validator->fails()) {
-            $urlErrorMessage = 'URL entered incorrectly. Please enter valid URL (example - http://google.com)';
-            return redirect()->route('index.show', ['urlErrorMessage' => $urlErrorMessage]);
+            $errors = $validator->errors()->all();
+            return view('index', ['errors' => $errors]);
         }
 
         $url = $request->input('url');
-
-        if ($this->hasURL($url)) {
-            $urlErrorMessage = 'Url is already added to database.';
-            return redirect()->route('index.show', ['urlErrorMessage' => $urlErrorMessage]);
-        }
-
         $domain = Domain::create(['name' => $url]);
 
         dispatch(new DomainJob($domain));
@@ -51,11 +54,5 @@ class DomainsController extends Controller
     {
         $urls = Domain::paginate(10);
         return view('domainsIndex', ['urls' => $urls]);
-    }
-
-    public function hasURL($urlName)
-    {
-        $domain = Domain::where('name', $urlName)->first();
-        return !empty($domain);
     }
 }
